@@ -1,5 +1,5 @@
-/* eslint-disable no-useless-concat */
 
+/*
 import React, { useEffect, useRef } from "react";
 import "./Feedback.css";
 
@@ -117,4 +117,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default Feedback;*/

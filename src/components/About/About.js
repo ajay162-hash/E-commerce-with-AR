@@ -1,4 +1,4 @@
-import "./About.css";
+/*import "./About.css";
 import ContributorSection from './ContributorSection';
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -177,4 +177,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default About;*/

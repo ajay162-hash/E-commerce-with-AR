@@ -10,6 +10,9 @@ import OfficeChair from "../assets/models/OfficeChair.glb";
 import OfficeChairUsdz from "../assets/models/OfficeChair.usdz";
 import pot from "../assets/models/pot.glb";
 import potUsdz from "../assets/models/pot.usdz";
+import oldArmchair from "../assets/models/old_armchair.glb";  // Missing import added
+import oldArmchairUsdz from "../assets/models/old_armchair.usdz";  // Missing import added
+
 
 const productItems = [
   {
@@ -155,6 +158,25 @@ const productItems = [
       },
     ]
   },
-  
+  {
+    id: 7, // Unique ID
+    name: "Old Armchair",
+    modelSrc: oldArmchair,
+    iOSSrc: oldArmchairUsdz,
+    category: "Furniture",
+    color: "Brown",
+    annotations: [
+      {
+        title: "Armrest Comfort",
+        slot: "hotspot-1",
+        position: "0.02m 0.5m 0.1m",
+        normal: "0m 1m 0m",
+        orbit: "10deg 120deg 0.03m",
+        target: "0m 0m 0m"
+      }
+    ]
+  }
 ];
+  
+
 export default productItems;

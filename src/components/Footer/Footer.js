@@ -9,7 +9,7 @@ function Footer() {
         <div class="contact-content">
           <Link to="/"> Home </Link>
           <Link
-            to="/about"
+            to="/"
           >
             About
           </Link>
@@ -24,28 +24,19 @@ function Footer() {
         </div>
 
         <div className="contact-content">
-          <Link to="/feedback"> Feedback </Link>
-          <Link to="mailto:shwetkhatri2001@gmail.com" target="_blank">
+          <Link to="/"> Feedback </Link>
+          <Link to="/" target="_blank">
             Contact
           </Link>
-          <Link to="/"> Tel: 123-456-7890 </Link>
+          
         </div>
 
         <div className="contact-content">
           <Link
-            to="https://github.com/ShwetKhatri2001/AR-Webstore"
+            to="https://github.com/ajay162-hash"
             target="_blank"
           >
-            GitHub
-          </Link>
-          <Link
-            to="https://www.linkedin.com/in/shwet-khatri-4ab216196/"
-            target="_blank"
-          >
-            LinkedIn
-          </Link>
-          <Link to="https://twitter.com/shwetkhatri2001" target="_blank">
-            Twitter
+            GitHub profile
           </Link>
         </div>
       </div>
@@ -61,9 +52,6 @@ function Footer() {
           <input type="submit" name="submit" value="Submit" required></input>
         
         </form>
-      </div>
-      <div class="last">
-        <p>@ 2023 AR-Website | All Rights Reserved</p>
       </div>
     </div>
   );
