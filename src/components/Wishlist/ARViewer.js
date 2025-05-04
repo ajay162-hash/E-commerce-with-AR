@@ -1,84 +1,42 @@
-import React, { useState, useEffect } from "react";
-import "./ARViewer.css";
+import React from 'react';
 
-const ARViewer = ({ wishlist, onClose }) => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [selectedModels, setSelectedModels] = useState([]);
+import './ARViewer.css';
 
-  useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    if (/android|iphone|ipad|ipod/i.test(userAgent.toLowerCase())) {
-      setIsMobile(true);
-    }
-  }, []);
 
-  const toggleModelSelection = (model) => {
-    const exists = selectedModels.find((m) => m.id === model.id);
-    if (exists) {
-      setSelectedModels((prev) => prev.filter((m) => m.id !== model.id));
-    } else {
-      setSelectedModels((prev) => [...prev, model]);
-    }
-  };
+const ARViewer = ({ selectedModels, onClose }) => {
+  const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
   return (
     <div className="ar-container">
       <div className="ar-header">
-        <button onClick={onClose} className="close-btn">
-          Close AR
-        </button>
-        <h2>AR Mode</h2>
+        <h2>AR Viewer</h2>
+        <button className="close-btn" onClick={onClose}>Close</button>
       </div>
 
       {!isMobile ? (
-        <p className="instruction">AR view is only available on mobile phones.</p>
+        <div className="instruction">
+          AR is only supported on mobile devices.<br />
+          Please open this page on your smartphone or tablet to view the models in AR.
+        </div>
       ) : (
-        <>
-          <model-viewer
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            camera-controls
-            auto-rotate
-            disable-zoom
-            style={{ width: "100%", height: "75vh" }}
-          >
-            {selectedModels.map((model) => (
-              <div key={model.id}>
-                <model-viewer
-                  key={model.id}
-                  src={model.modelSrc}
-                  ios-src={model.iOSSrc}
-                  ar
-                  ar-modes="webxr scene-viewer quick-look"
-                  camera-controls
-                  auto-rotate
-                  exposure="1"
-                  shadow-intensity="1"
-                  environment-image="neutral"
-                  style={{
-                    width: 0,
-                    height: 0,
-                    position: "absolute",
-                    zIndex: -1,
-                  }}
-                />
-              </div>
-            ))}
-          </model-viewer>
-
-          <p className="instruction">Tap thumbnails to place models in AR</p>
-          <div className="ar-thumbnails">
-            {wishlist.map((item) => (
-              <img
-                key={item.id}
-                src={`/assets/thumbnails/${item.thumbnail}`}
-                alt={item.name}
-                className={`ar-thumb ${selectedModels.some((m) => m.id === item.id) ? "selected" : ""}`}
-                onClick={() => toggleModelSelection(item)}
-              />
-            ))}
-          </div>
-        </>
+        selectedModels && selectedModels.length > 0 ? (
+          selectedModels.map((model, index) => (
+            <model-viewer
+              key={index}
+              src={model.url}
+              ios-src={model.usdzUrl}
+              ar
+              ar-modes="scene-viewer quick-look webxr"
+              autoplay
+              camera-controls
+              shadow-intensity="1"
+              environment-image="neutral"
+              style={{ width: '100%', height: '100vh', marginBottom: '20px' }}
+            ></model-viewer>
+          ))
+        ) : (
+          <div className="instruction">No models selected</div>
+        )
       )}
     </div>
   );
