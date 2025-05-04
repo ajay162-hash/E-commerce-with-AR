@@ -1,44 +1,43 @@
-// src/components/Wishlist/WishList.js
 import React, { useState } from "react";
 import "./WishList.css";
 import ARViewer from "./ARViewer";
 
-const WishList = ({ wishlist, onRemoveItem }) => {
-  const [arMode, setArMode] = useState(false);
-
-  const handleOpenAR = () => {
-    if (wishlist.length === 0) {
-      alert("Add models to view in AR");
-      return;
-    }
-    setArMode(true);
-  };
-
-  const handleCloseAR = () => {
-    setArMode(false);
-  };
+const Wishlist = ({ wishlist, removeFromWishlist }) => {
+  const [openAR, setOpenAR] = useState(false);
 
   return (
     <div className="wishlist-container">
-      <h1>Your Wishlist</h1>
-      <button onClick={handleOpenAR} className="ar-open-btn">
-        Open All Models in AR
-      </button>
-      {arMode && <ARViewer wishlist={wishlist} onClose={handleCloseAR} />}
+      <h2>Your Wishlist</h2>
+
       {wishlist.length === 0 ? (
-        <p className="empty-msg">Add models to view in AR</p>
+        <p>No items in wishlist.</p>
       ) : (
-        <ul className="wishlist-items">
-          {wishlist.map((item) => (
-            <li key={item.id} className="wishlist-item">
-              <p>{item.name}</p>
-              <button onClick={() => onRemoveItem(item.id)}>Remove</button>
-            </li>
-          ))}
-        </ul>
+        <>
+          <div className="wishlist-grid">
+            {wishlist.map((item) => (
+              <div className="wishlist-item" key={item.id}>
+                <img
+                  src={`/assets/thumbnails/${item.thumbnail}`}
+                  alt={item.name}
+                  className="wishlist-thumbnail"
+                />
+                <div className="wishlist-details">
+                  <h3>{item.name}</h3>
+                  <button onClick={() => removeFromWishlist(item.id)}>Remove</button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button className="open-ar-btn" onClick={() => setOpenAR(true)}>
+            Open All in AR
+          </button>
+        </>
       )}
+
+      {openAR && <ARViewer wishlist={wishlist} onClose={() => setOpenAR(false)} />}
     </div>
   );
 };
 
-export default WishList;
+export default Wishlist;

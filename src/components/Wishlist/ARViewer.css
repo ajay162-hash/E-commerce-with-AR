@@ -1,45 +1,55 @@
-/* src/components/Wishlist/ARViewer.css */
 .ar-container {
-    background: #121212;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .ar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .close-btn {
-    background-color: #e63946;
-    border: none;
-    padding: 10px 16px;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .instruction {
-    margin: 20px 0;
-    color: #aaa;
-  }
-  
-  .ar-thumbnails {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    margin-top: 20px;
-    padding-bottom: 10px;
-  }
-  
-  .ar-thumb {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid white;
-    cursor: pointer;
-  }
-  
+  background: #121212;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.ar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  background-color: #e63946;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.instruction {
+  margin: 20px 0;
+  color: #aaa;
+}
+
+.ar-thumbnails {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.ar-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ar-thumb:hover {
+  transform: scale(1.1);
+}
+
+.ar-thumb.selected {
+  border-color: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
